@@ -41,8 +41,8 @@ export default function CalendarPage() {
         .from('dreams')
         .select('*')
         .eq('user_id', user.id)
-        .gte('date', startDate)
-        .lte('date', endDate);
+        .gte('dream_date', startDate)
+        .lte('dream_date', endDate);
 
       if (error) throw error;
       setDreams(data as Dream[]);
