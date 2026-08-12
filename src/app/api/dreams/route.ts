@@ -83,11 +83,13 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { title, content, dream_date, mood, lucidity, tags } = body;
+    const { title, content, dream_date, date, mood, lucidity, tags } = body;
 
     if (!content || content.trim().length === 0) {
       return NextResponse.json({ error: 'Dream content is required' }, { status: 400 });
     }
+
+    const finalDate = dream_date || date || new Date().toISOString().split('T')[0];
 
     // Create the dream
     const { data: dream, error } = await supabase
@@ -96,7 +98,7 @@ export async function POST(request: NextRequest) {
         user_id: user.id,
         title: title || 'Untitled Dream',
         content: content.trim(),
-        dream_date: dream_date || new Date().toISOString().split('T')[0],
+        dream_date: finalDate,
         mood: mood || null,
         lucidity: lucidity || null,
       })
