@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
       };
 
       if (embedding) {
-        updatePayload.embedding = JSON.stringify(embedding);
+        updatePayload.embedding = embedding;
       }
 
       await supabase

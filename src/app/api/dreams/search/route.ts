@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
     try {
       const embedding = await generateEmbedding(query);
       const { data } = await supabase.rpc('match_dreams', {
-        query_embedding: JSON.stringify(embedding),
+        query_embedding: embedding,
         match_threshold: 0.3,
         match_count: limit,
         p_user_id: user.id,

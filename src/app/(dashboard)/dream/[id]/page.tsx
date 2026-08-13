@@ -26,7 +26,7 @@ export default function DreamDetailPage({ params }: { params: Promise<{ id: stri
       try {
         const { data: dreamData, error } = await supabase
           .from('dreams')
-          .select('*, analysis:dream_analyses(*)')
+          .select('*, dream_tags(tag), dream_entities(*)')
           .eq('id', resolvedParams.id)
           .single();
 
