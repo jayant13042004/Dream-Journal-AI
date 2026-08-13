@@ -74,7 +74,11 @@ export default function DreamDetailPage({ params }: { params: Promise<{ id: stri
       if (!aiResponse.ok) throw new Error('Analysis failed');
 
       const analysisData = await aiResponse.json();
-      setDream((prev) => prev ? { ...prev, analysis: [analysisData] } : null);
+      setDream((prev) => prev ? { 
+        ...prev, 
+        ai_analysis: analysisData.analysis,
+        dream_entities: analysisData.entities
+      } : null);
       toast.success('Analysis complete!');
     } catch (error) {
       console.error('Error analyzing:', error);

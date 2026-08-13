@@ -1,6 +1,6 @@
 import { GoogleGenAI } from '@google/genai';
 
-export const GENERATION_MODEL = 'gemini-2.5-flash';
+export const GENERATION_MODEL = 'gemini-3.6-flash';
 export const EMBEDDING_MODEL = 'gemini-embedding-001';
 
 export function getAIClient(): GoogleGenAI {
