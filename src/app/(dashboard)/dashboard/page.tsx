@@ -27,13 +27,13 @@ export default function DashboardPage() {
         const [dreamsResponse, entitiesResponse] = await Promise.all([
           supabase
             .from('dreams')
-            .select('*, dream_tags(tag:tags(*))')
+            .select('*, dream_tags(tag)')
             .eq('user_id', user.id)
             .order('dream_date', { ascending: false })
             .limit(12),
           supabase
             .from('dream_entities')
-            .select('name, category')
+            .select('entity_name, entity_type')
             .eq('user_id', user.id)
             .limit(50)
         ]);
@@ -43,7 +43,11 @@ export default function DashboardPage() {
         }
         
         if (entitiesResponse.data) {
-          setEntities(entitiesResponse.data);
+          const formatted = entitiesResponse.data.map((e: any) => ({
+            name: e.entity_name,
+            category: e.entity_type
+          }));
+          setEntities(formatted);
         }
       } catch (error) {
         console.error('Error fetching dashboard data:', error);

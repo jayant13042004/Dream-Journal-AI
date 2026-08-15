@@ -27,7 +27,7 @@ export function PatternSnapshot({ dreams, entities }: PatternSnapshotProps) {
     return Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
   };
 
-  const allEmotions = dreams.flatMap(d => d.ai_emotions || []);
+  const allEmotions = dreams.flatMap(d => (d.ai_emotions as any[])?.map(e => typeof e === 'string' ? e : e.name) || []);
   const topEmotion = getMostCommon(allEmotions) || 'Need data';
 
   const allThemes = dreams.flatMap(d => d.ai_themes || []);

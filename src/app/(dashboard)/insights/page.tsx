@@ -28,7 +28,7 @@ export default function InsightsPage() {
       setLoading(true);
       
       const [dreamsRes, entitiesRes] = await Promise.all([
-        supabase.from('dreams').select('*').eq('user_id', user.id).order('date', { ascending: true }),
+        supabase.from('dreams').select('*').eq('user_id', user.id).order('dream_date', { ascending: true }),
         supabase.from('dream_entities').select('*').eq('user_id', user.id)
       ]);
       
