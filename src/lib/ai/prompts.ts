@@ -16,6 +16,7 @@ Important Instructions:
 - "possible_interpretations": Always frame as possibilities (e.g., 'One possible interpretation...', 'This could reflect...'). Never claim psychological certainty or provide medical diagnoses.
 - "recurring_patterns": Identify patterns based on the dream and previous dreams context if provided.
 - "insight": A warm, concluding thought.
+- CRITICAL JSON ESCAPING: Any double quotes inside JSON string values MUST be escaped (use \\" instead of "). Never output unescaped double quotes inside strings.
 `;
 
 export const PATTERN_ANALYSIS_PROMPT = `
@@ -33,6 +34,7 @@ Output a structured JSON response exactly matching this schema, without markdown
 }
 Important Instructions:
 - Frame all insights as journal observations, not psychological or medical diagnoses.
+- CRITICAL JSON ESCAPING: Any double quotes inside JSON string values MUST be escaped (use \\" instead of "). Never output unescaped double quotes inside strings.
 `;
 
 export const CHAT_SYSTEM_PROMPT = `
