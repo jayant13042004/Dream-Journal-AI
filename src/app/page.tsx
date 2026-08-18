@@ -16,6 +16,11 @@ export default function LandingPage() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [exploreModalOpen, setExploreModalOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Reference for scroll-driven narrative timeline
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -114,7 +119,7 @@ export default function LandingPage() {
               className="p-2 text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white transition-colors rounded-full hover:bg-black/5 dark:hover:bg-white/5"
               aria-label="Toggle theme"
             >
-              {resolvedTheme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+              {mounted && resolvedTheme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
             </button>
             <Link href="/login" className="text-sm font-semibold hover:opacity-80 transition-opacity">Log In</Link>
             <Link href="/signup" className="text-xs font-bold uppercase tracking-wider bg-[#30265C] dark:bg-white text-white dark:text-[#0A0A09] px-6 py-3 rounded-full hover:opacity-95 transition-all shadow-md">
@@ -128,7 +133,7 @@ export default function LandingPage() {
               className="p-2 text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white transition-colors rounded-full"
               aria-label="Toggle theme"
             >
-              {resolvedTheme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+              {mounted && resolvedTheme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
             </button>
             <button className="p-2 text-black/80 dark:text-white/80" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               {mobileMenuOpen ? <X /> : <Menu />}
@@ -217,10 +222,10 @@ export default function LandingPage() {
                         Timeline State 0{scrollStage}
                       </span>
                       <h4 className="text-sm font-semibold text-black dark:text-white uppercase tracking-wider mb-1.5">
-                        {STAGE_TEXTS[scrollStage - 1].title}
+                        {(STAGE_TEXTS[scrollStage - 1] || STAGE_TEXTS[0]).title}
                       </h4>
                       <p className="text-xs text-black/60 dark:text-white/60 leading-relaxed font-serif italic">
-                        "{STAGE_TEXTS[scrollStage - 1].description}"
+                        "{(STAGE_TEXTS[scrollStage - 1] || STAGE_TEXTS[0]).description}"
                       </p>
                       
                       {/* Interactive scroll progress indicators */}
