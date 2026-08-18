@@ -39,14 +39,14 @@ export default function LandingPage() {
       {/* Navbar */}
       <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#FAFAF8]/80 backdrop-blur-md border-b border-black/5 py-3' : 'bg-transparent py-5'}`}>
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <img 
               src="/logo.png" 
               alt="Dream Journal AI Logo" 
               className="w-8 h-8 rounded-lg object-contain" 
             />
             <span className="font-display font-semibold text-xl tracking-tight">Dream Journal AI</span>
-          </div>
+          </Link>
           
           <div className="hidden md:flex items-center gap-8">
             <Link href="#features" className="text-sm font-medium text-black/60 hover:text-black transition-colors">Features</Link>

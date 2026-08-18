@@ -55,7 +55,18 @@ export default function InsightsPage() {
         
         if (response.ok) {
           const data = await response.json();
-          setInsights(data.insights || []);
+          const patternsObj = data.patterns;
+          if (patternsObj) {
+            const mergedInsights = [
+              ...(patternsObj.interesting_observations || []),
+              ...(patternsObj.emotional_patterns || []),
+              ...(patternsObj.recurring_themes || []).map((t: string) => `Theme pattern: ${t}`),
+              ...(patternsObj.recurring_symbols || []).map((s: string) => `Symbol pattern: ${s}`),
+            ];
+            setInsights(mergedInsights);
+          } else {
+            setInsights([]);
+          }
         }
       } catch (e) {
         console.error('Failed to fetch insights', e);

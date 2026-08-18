@@ -30,7 +30,7 @@ export function Sidebar() {
 
   return (
     <aside className="hidden md:flex flex-col w-[240px] fixed inset-y-0 left-0 bg-[var(--bg-sidebar)] border-r border-[var(--border-default)] z-20">
-      <div className="p-6 flex items-center gap-2">
+      <Link href="/dashboard" className="p-6 flex items-center gap-2 hover:opacity-80 transition-opacity">
         <img 
           src="/logo.png" 
           alt="Dream Journal AI Logo" 
@@ -39,7 +39,7 @@ export function Sidebar() {
         <span className="font-display font-semibold text-lg text-[var(--text-primary)]">
           Dream Journal
         </span>
-      </div>
+      </Link>
 
       <div className="px-4 mb-6">
         <Link href="/dream/new">
