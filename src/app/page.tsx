@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { PenLine, Sparkles, TrendingUp, Shield, Lock, ChevronRight, Menu, X } from 'lucide-react';
+import { InteractiveHeroOrb } from '@/components/layout/InteractiveHeroOrb';
 
 export default function LandingPage() {
   const [scrolled, setScrolled] = useState(false);
@@ -100,41 +101,12 @@ export default function LandingPage() {
           </motion.div>
         </div>
         
-        <div className="flex-1 w-full relative h-[400px] md:h-[500px] flex items-center justify-center">
+        <div className="flex-1 w-full relative h-[450px] flex items-center justify-center">
           <motion.div 
             style={{ y }}
             className="absolute inset-0 flex items-center justify-center"
           >
-            {/* Abstract Dream Visual */}
-            <div className="relative w-full max-w-[400px] aspect-square">
-              <motion.div 
-                animate={{ rotate: 360 }} 
-                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 rounded-full border border-black/5" 
-              />
-              <motion.div 
-                animate={{ rotate: -360 }} 
-                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-8 rounded-full border border-black/5" 
-              />
-              <motion.div 
-                animate={{ y: [0, -20, 0] }} 
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-tr from-[#F3E5D8] to-white rounded-full mix-blend-multiply blur-md shadow-2xl opacity-80" 
-              />
-              <motion.div 
-                animate={{ y: [0, 20, 0], x: [0, 10, 0] }} 
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-gradient-to-bl from-[#E5ECE9] to-white rounded-full mix-blend-multiply blur-md shadow-2xl opacity-80" 
-              />
-              <motion.div 
-                animate={{ scale: [1, 1.1, 1] }} 
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 m-auto w-24 h-24 bg-white/50 backdrop-blur-xl rounded-full border border-white shadow-xl flex items-center justify-center"
-              >
-                <Moon className="w-10 h-10 text-[#8B7355]" />
-              </motion.div>
-            </div>
+            <InteractiveHeroOrb />
           </motion.div>
         </div>
       </section>
